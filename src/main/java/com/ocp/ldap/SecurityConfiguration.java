@@ -2,9 +2,10 @@ package com.ocp.ldap;
 
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.LdapShaPasswordEncoder;
-
+@EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -14,7 +15,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .userDnPatterns("uid={0},ou=people")
                 .groupSearchBase("ou=groups")
                 .contextSource()
-                .url("ldap://localhost:8389/dc=springframework,dc=org")
+                .url("ldap://localhost:8404/dc=springframework,dc=org")
                 .and()
                 .passwordCompare()
                 .passwordEncoder(new LdapShaPasswordEncoder())
